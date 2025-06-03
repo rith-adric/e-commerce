@@ -1,19 +1,23 @@
-import 'package:ecommerce/screens/main_screen.dart';
+import 'package:ecommerce/routes/app_route.dart';
+import 'package:ecommerce/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MainApp());
+void main() {
+  runApp(const MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: 'Visit - My Homework',
       debugShowCheckedModeBanner: false,
-      home: MainScreen(),
+      home: SplashScreen(),
+      initialRoute: AppRoute.splashScreen,
+      onGenerateRoute: AppRoute.onGenerateRoute,
+      navigatorKey: AppRoute.key,
     );
   }
 }

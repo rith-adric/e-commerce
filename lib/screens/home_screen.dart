@@ -1,137 +1,72 @@
+import 'package:ecommerce/utils/constants/icons.dart';
+import 'package:ecommerce/utils/themes/colors.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color(0xFFF4F3F2), // F2F2F2
-        // appBar: AppBar(title: const Text('Title')),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search any places',
-                  prefixIcon: const Icon(
-                    Icons.search,
-                    color: Colors.blueAccent,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.blueAccent),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(
-                      color: Colors.blueAccent,
-                      width: 2,
-                    ),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Categories',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueAccent,
-                ),
-              ),
-              const SizedBox(height: 10),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    _CategoryChip(icon: Icons.terrain, label: 'Mountains'),
-                    SizedBox(width: 8),
-                    _CategoryChip(icon: Icons.beach_access, label: 'Beache'),
-                    SizedBox(width: 8),
-                    _CategoryChip(icon: Icons.water, label: 'Lakes'),
-                    SizedBox(width: 8),
-                    _CategoryChip(icon: Icons.local_florist, label: 'Camp'),
-                    SizedBox(width: 8),
-                    _CategoryChip(
-                      icon: Icons.temple_buddhist,
-                      label: 'Tamples',
-                    ),
-                    SizedBox(width: 8),
-                    _CategoryChip(
-                      icon: Icons.account_balance,
-                      label: 'Pagodas',
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Recommended',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueAccent,
-                ),
-              ),
-              const SizedBox(height: 10),
-              // SizedBox(
-              //   height: 225,
-              //   child: ListView.builder(
-              //     scrollDirection: Axis.horizontal,
-              //     itemCount: products.length,
-              //     itemBuilder: (context, index) {
-              //       return GestureDetector(onTap: () {});
-              //     },
-              //   ),
-              // ),
-            ],
-          ),
+    return Scaffold(appBar: _appBar(context), body: _body);
+  }
+
+  PreferredSizeWidget _appBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.white,
+      elevation: 0,
+      automaticallyImplyLeading: false,
+      title: Text(
+        "Hi, Mr. Choeun Sothearith 👋",
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: CallColors.textPrimary,
         ),
+      ),
+      actions: [
+        _iconButton(Image.asset(CallIcons.iconSearch, width: 20, height: 20)),
+        const SizedBox(width: 8),
+        _iconButton(
+          Image.asset(CallIcons.iconNotification, width: 20, height: 20),
+        ),
+        const SizedBox(width: 12),
+      ],
+    );
+  }
+
+  Widget _iconButton(Widget icon) {
+    return Container(
+      margin: const EdgeInsets.only(right: 4),
+      width: 33,
+      height: 33,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.grey.shade200,
+      ),
+      child: IconButton(
+        icon: icon,
+        onPressed: () {},
+        padding: EdgeInsets.zero,
+        constraints: const BoxConstraints(),
       ),
     );
   }
-}
 
-class _CategoryChip extends StatelessWidget {
-  final IconData icon;
-  final String label;
-
-  const _CategoryChip({required this.icon, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
+  Widget get _body {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, color: Colors.blueAccent, size: 24),
-          SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              color: Colors.blueAccent[700],
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-            ),
+      // color: CallColors.defaultColor,
+      width: double.infinity,
+      height: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: const Center(
+        child: Text(
+          "My work is done, guys. Appreciate for your time.",
+          style: TextStyle(
+            fontSize: 20,
+            color: CallColors.textSecondary,
+            fontWeight: FontWeight.bold,
           ),
-        ],
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
