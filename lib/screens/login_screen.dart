@@ -52,6 +52,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 _passwordField,
                 const SizedBox(height: 24),
                 _loginButton,
+                const SizedBox(height: 10),
+                _registerButton,
+                const SizedBox(height: 10),
+                _guestButton,
               ],
             ),
           ),
@@ -147,11 +151,70 @@ class _LoginScreenState extends State<LoginScreen> {
           if (_formKey.currentState!.validate()) {
             AppRoute.key.currentState!.pushReplacementNamed(
               AppRoute.mainScreen,
+              arguments: "Mr. Choeun Sothearith",
             );
           } else {}
         },
         child: const Text(
           "Login",
+          style: TextStyle(
+            fontSize: 16,
+            color: Color(0xFFFFFFFF),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget get _registerButton {
+    return SizedBox(
+      width: double.infinity,
+      height: 48,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: CallColors.secondary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        onPressed: () {
+          AppRoute.key.currentState!.pushReplacementNamed(
+            AppRoute.registerScreen,
+          );
+        },
+
+        child: const Text(
+          "Register",
+          style: TextStyle(
+            fontSize: 16,
+            color: Color(0xFFFFFFFF),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget get _guestButton {
+    return SizedBox(
+      width: double.infinity,
+      height: 48,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: CallColors.darkGrey,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        onPressed: () {
+          AppRoute.key.currentState!.pushReplacementNamed(
+            AppRoute.mainScreen,
+            arguments: "Guest",
+          );
+        },
+        child: const Text(
+          "Continue as Guest",
           style: TextStyle(
             fontSize: 16,
             color: Color(0xFFFFFFFF),

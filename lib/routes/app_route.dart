@@ -21,7 +21,8 @@ class AppRoute {
       case registerScreen:
         return _buildRoute(routeSettings, RegisterScreen());
       case mainScreen:
-        return _buildRoute(routeSettings, MainScreen());
+        final args = routeSettings.arguments as String? ?? "Guest";
+        return _buildRoute(routeSettings, MainScreen(username: args));
       default:
         throw RouteException("Route not found!");
     }

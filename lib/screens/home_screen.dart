@@ -3,7 +3,8 @@ import 'package:ecommerce/utils/themes/colors.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final String username;
+  const HomeScreen({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       elevation: 0,
       automaticallyImplyLeading: false,
       title: Text(
-        "Hi, Mr. Choeun Sothearith 👋",
+        "Hi, $username 👋",
         style: Theme.of(context).textTheme.titleMedium?.copyWith(
           fontWeight: FontWeight.bold,
           color: CallColors.textPrimary,

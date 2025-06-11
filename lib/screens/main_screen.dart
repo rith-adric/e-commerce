@@ -6,7 +6,9 @@ import 'package:ecommerce/utils/themes/colors.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final String username;
+
+  const MainScreen({super.key, required this.username});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -14,31 +16,39 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
-  List<Widget> screenList = [
-    HomeScreen(),
-    FavoriteScreen(),
-    NotificationScreen(),
-    MoreScreen(),
-  ];
+  late List<Widget> screenList;
+
+  @override
+  void initState() {
+    super.initState();
+    screenList = [
+      HomeScreen(username: widget.username),
+      FavoriteScreen(),
+      NotificationScreen(),
+      MoreScreen(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _body, bottomNavigationBar: bottomNav);
-  }
-
-  Widget get _body {
-    return screenList[_currentIndex];
+    return Scaffold(
+      body: screenList[_currentIndex],
+      bottomNavigationBar: bottomNav,
+    );
   }
 
   Widget get bottomNav {
     final items = [
-      BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-      BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
-      BottomNavigationBarItem(
+      const BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+      const BottomNavigationBarItem(
+        icon: Icon(Icons.favorite),
+        label: "Favorite",
+      ),
+      const BottomNavigationBarItem(
         icon: Icon(Icons.notifications),
         label: "Notification",
       ),
-      BottomNavigationBarItem(icon: Icon(Icons.more), label: "More"),
+      const BottomNavigationBarItem(icon: Icon(Icons.more), label: "More"),
     ];
     return BottomNavigationBar(
       items: items,
