@@ -38,6 +38,7 @@ class HomeScreen extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(right: 4),
       width: 33,
+
       height: 33,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
